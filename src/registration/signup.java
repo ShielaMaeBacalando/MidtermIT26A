@@ -48,6 +48,7 @@ public class signup extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(214, 224, 245));
         jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 0, 102)));
 
         jLabel1.setFont(new java.awt.Font("Perpetua Titling MT", 1, 24)); // NOI18N
