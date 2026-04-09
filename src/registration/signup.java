@@ -170,11 +170,12 @@ public class signup extends javax.swing.JFrame {
                 .addContainerGap(124, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(btnsignup, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnsignup, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(73, 73, 73)
+                        .addGap(6, 6, 6)
                         .addComponent(btnlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(115, 115, 115))
         );
@@ -262,12 +263,12 @@ public class signup extends javax.swing.JFrame {
 
     private void btnsignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsignupActionPerformed
         // TODO add your handling code here:
-        String fname, lname, mail, username, addr, pass, rpass;
+        String fname, lname, mail, uname, addr, pass, rpass;
         
         fname = txtfirstname.getText();
         lname = txtlastname.getText();
         mail = txtemail.getText();
-        username = txtusername.getText();
+        uname = txtusername.getText();
         addr = txtadd.getText();
         pass = txtpass.getText();
         rpass = txtconfpass.getText();
@@ -279,19 +280,26 @@ public class signup extends javax.swing.JFrame {
         else if (lname.equals("")){
             
             JOptionPane.showMessageDialog(null, "Enter Your Last Name");
-        }if (mail.equals("")){
+        }else if (mail.equals("")){
             
             JOptionPane.showMessageDialog(null, "Enter Your Email");
-        }if (addr.equals("")){
+        }else if (addr.equals("")){
             
             JOptionPane.showMessageDialog(null, "Enter Your Address");
-        }if (pass.equals("")){
+        }else if (uname.equals("")){
+            
+            JOptionPane.showMessageDialog(null, "Enter Your Username");
+        }else if (pass.equals("")){
             
             JOptionPane.showMessageDialog(null, "Enter Your Password");
         }
-        if (rpass.equals("")){
+        else if (rpass.equals("")){
             
-            JOptionPane.showMessageDialog(null, "Confirm Password");
+            JOptionPane.showMessageDialog(null, "CONFIRM PASSWORD NAH UYY!");
+        }
+        else if (!pass.equals(rpass)) {
+            JOptionPane.showMessageDialog(null, "PASSWORD DOES NOT MATCH BRUH!");
+            
         }
     }//GEN-LAST:event_btnsignupActionPerformed
 
