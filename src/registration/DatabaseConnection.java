@@ -3,25 +3,20 @@ package registration;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DatabaseConnection {
     
-    private static final String URL = "jdbc:mysql://localhost:3306/useregistration";
-    private static final String USER = "root";
-    private static final String PASSWORD = "";
-
-    public static Connection getConnection() {
-        Connection conn = null;
-        try {
+    public static Connection ConnectTODB(){
             
-            Class.forName("com.mysql.cj.jdbc.Driver"); 
-            
-            conn = DriverManager.getConnection(URL, USER, PASSWORD);
-            System.out.println("Database Connected Successfully!");
-        } catch (ClassNotFoundException | SQLException e) {
-            System.out.println("Connection Failed!");
-            e.printStackTrace();
-        }
-        return conn;
+            try {
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/useregistration","root","");
+                return con;
+            } catch (SQLException ex) {
+                Logger.getLogger(DatabaseConnection.class.getName()).log(Level.SEVERE, null, ex);
+                return null;
+            }
     }
 }
+   
