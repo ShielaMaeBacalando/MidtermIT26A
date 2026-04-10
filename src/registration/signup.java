@@ -1,9 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package registration;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,6 +14,10 @@ import javax.swing.JOptionPane;
  */
 public class signup extends javax.swing.JFrame {
     
+    Connection conn = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(signup.class.getName());
 
     /**
@@ -19,6 +25,27 @@ public class signup extends javax.swing.JFrame {
      */
     public signup() {
         initComponents();
+        conn = DatabaseConnection.connectionTODB();
+    }
+    
+    //Code to check whether user already exists
+    
+    public boolean checkUser (String username)
+    {
+        boolean checkUser = false;
+        String query = "SELECT *FROM tbl_user WHERE username = ?";
+        
+        try {
+            pst = conn.prepareStatement(query);
+            pst.setString(1, txtusername.getText());
+            rs = pst.executeQuery();
+            if(rs.next()) {
+                checkUser = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(signup.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return checkUser;
     }
 
     /**
@@ -38,12 +65,36 @@ public class signup extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         txtfirstname = new javax.swing.JTextField();
         txtlastname = new javax.swing.JTextField();
         txtemail = new javax.swing.JTextField();
-        txtadd = new javax.swing.JTextField();
-        txtpass = new javax.swing.JTextField();
-        txtconfpass = new javax.swing.JTextField();
+        txtconfirmpassword = new javax.swing.JTextField();
+        txtusername = new javax.swing.JTextField();
+        txtaddress = new javax.swing.JTextField();
+        txtpassword = new javax.swing.JTextField();
+        btnlogin = new javax.swing.JButton();
+        btnsignup = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        txtfirstname = new javax.swing.JTextField();
+        txtlastname = new javax.swing.JTextField();
+        txtemail = new javax.swing.JTextField();
+        txtaddress = new javax.swing.JTextField();
+        txtpassword = new javax.swing.JTextField();
+        txtconfirmpassword = new javax.swing.JTextField();
         btnlogin = new javax.swing.JButton();
         btnsignup = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
@@ -95,22 +146,23 @@ public class signup extends javax.swing.JFrame {
         txtemail.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 51, 153)));
         txtemail.addActionListener(this::txtemailActionPerformed);
 
-        txtadd.setFont(new java.awt.Font("Serif", 1, 12)); // NOI18N
-        txtadd.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 51, 153)));
-        txtadd.addActionListener(this::txtaddActionPerformed);
+        txtaddress.setFont(new java.awt.Font("Serif", 1, 12)); // NOI18N
+        txtaddress.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 51, 153)));
+        txtaddress.addActionListener(this::txtaddressActionPerformed);
 
-        txtpass.setFont(new java.awt.Font("Serif", 1, 12)); // NOI18N
-        txtpass.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 51, 153)));
-        txtpass.addActionListener(this::txtpassActionPerformed);
+        txtpassword.setFont(new java.awt.Font("Serif", 1, 12)); // NOI18N
+        txtpassword.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 51, 153)));
+        txtpassword.addActionListener(this::txtpasswordActionPerformed);
 
-        txtconfpass.setFont(new java.awt.Font("Serif", 1, 12)); // NOI18N
-        txtconfpass.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 51, 153)));
-        txtconfpass.addActionListener(this::txtconfpassActionPerformed);
+        txtconfirmpassword.setFont(new java.awt.Font("Serif", 1, 12)); // NOI18N
+        txtconfirmpassword.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(0, 51, 153)));
+        txtconfirmpassword.addActionListener(this::txtconfirmpasswordActionPerformed);
 
         btnlogin.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         btnlogin.setForeground(new java.awt.Color(51, 0, 102));
         btnlogin.setText("LOGIN");
         btnlogin.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(0, 0, 153), new java.awt.Color(0, 0, 102), new java.awt.Color(51, 0, 153), new java.awt.Color(0, 51, 153)));
+        btnlogin.addActionListener(this::btnloginActionPerformed);
 
         btnsignup.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         btnsignup.setForeground(new java.awt.Color(51, 0, 102));
@@ -159,9 +211,9 @@ public class signup extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(txtlastname, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 227, Short.MAX_VALUE)
                             .addComponent(txtemail, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtadd, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtpass, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtconfpass, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtaddress, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtpassword, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtconfirmpassword, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtfirstname)
                             .addComponent(txtusername, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -198,7 +250,7 @@ public class signup extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtadd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtaddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -207,10 +259,10 @@ public class signup extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txtpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtconfpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtconfirmpassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addGap(30, 30, 30)
                 .addComponent(jLabel8)
@@ -249,29 +301,30 @@ public class signup extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtemailActionPerformed
 
-    private void txtaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtaddActionPerformed
+    private void txtaddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtaddressActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtaddActionPerformed
+    }//GEN-LAST:event_txtaddressActionPerformed
 
-    private void txtpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpassActionPerformed
+    private void txtpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtpassActionPerformed
+    }//GEN-LAST:event_txtpasswordActionPerformed
 
-    private void txtconfpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtconfpassActionPerformed
+    private void txtconfirmpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtconfirmpasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtconfpassActionPerformed
+    }//GEN-LAST:event_txtconfirmpasswordActionPerformed
 
     private void btnsignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsignupActionPerformed
         // TODO add your handling code here:
+        
         String fname, lname, mail, uname, addr, pass, rpass;
         
         fname = txtfirstname.getText();
         lname = txtlastname.getText();
         mail = txtemail.getText();
         uname = txtusername.getText();
-        addr = txtadd.getText();
-        pass = txtpass.getText();
-        rpass = txtconfpass.getText();
+        addr = txtaddress.getText();
+        pass = txtpassword.getText();
+        rpass = txtconfirmpassword.getText();
         
         if (fname.equals("")){
             
@@ -301,11 +354,40 @@ public class signup extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "PASSWORD DOES NOT MATCH BRUH!");
             
         }
+        String sql = "INSERT INT0 users (firstname, lastname, email, username, address, password) " +
+                "VALUES (?,?,?,?,?,?)";
+        
+        try {
+            pst = conn.prepareStatement (sql);
+            pst.setString(1, txtfirstname.getText());
+            pst.setString(2, txtlastname.getText());
+            pst.setString(3, txtemail.getText());
+            pst.setString(4, txtusername.getText());
+            pst.setString(5, txtaddress.getText());
+            pst.setString(6, txtpassword.getText());
+            
+             if (pst.executeUpdate() > 0) {
+                JOptionPane.showMessageDialog(null, "Registered successful");
+                txtfirstname.setText("");
+                txtlastname.setText("");
+                txtemail.setText("");
+                txtusername.setText("");
+                txtaddress.setText("");
+                txtpassword.setText("");
+                txtconfirmpassword.setText("");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(signup.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnsignupActionPerformed
 
     private void txtusernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtusernameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtusernameActionPerformed
+
+    private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnloginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -345,12 +427,12 @@ public class signup extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtadd;
-    private javax.swing.JTextField txtconfpass;
+    private javax.swing.JTextField txtaddress;
+    private javax.swing.JTextField txtconfirmpassword;
     private javax.swing.JTextField txtemail;
     private javax.swing.JTextField txtfirstname;
     private javax.swing.JTextField txtlastname;
-    private javax.swing.JTextField txtpass;
+    private javax.swing.JTextField txtpassword;
     private javax.swing.JTextField txtusername;
     // End of variables declaration//GEN-END:variables
 }
