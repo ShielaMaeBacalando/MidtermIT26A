@@ -1,22 +1,27 @@
-package registration; 
+package registration; // Ensure this matches your folder structure
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class DatabaseConnection {
     
-    public static Connection ConnectTODB(){
+    private static final String URL = "jdbc:mysql://localhost:3306/useregistration";
+    private static final String USER = "root";
+    private static final String PASSWORD = "";
+
+    public static Connection getConnection() {
+        Connection conn = null;
+        try {
+            // Register the driver (optional in newer JDBC versions but good for troubleshooting)
+            Class.forName("com.mysql.cj.jdbc.Driver"); 
             
-            try {
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/useregistration","root","");
-                return con;
-            } catch (SQLException ex) {
-                Logger.getLogger(DatabaseConnection.class.getName()).log(Level.SEVERE, null, ex);
-                return null;
-            }
+            conn = DriverManager.getConnection(URL, USER, PASSWORD);
+            System.out.println("Database Connected Successfully!");
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println("Connection Failed!");
+            e.printStackTrace();
+        }
+        return conn;
     }
 }
-   

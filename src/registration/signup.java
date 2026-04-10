@@ -30,7 +30,7 @@ public class signup extends javax.swing.JFrame {
      */
     public signup() {
         initComponents();
-        conn = DatabaseConnection.ConnectTODB();
+        conn = DatabaseConnection.getConnection();
     }
     
     //Code to check whether user already exists
@@ -156,7 +156,7 @@ public class signup extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Yu Gothic", 1, 8)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 102));
-        jLabel8.setText("ALREADY HAVE AN ACCOUNT!?");
+        jLabel8.setText("ALREADY HAVE AN ACCOUNT!? WOW..");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 102));
@@ -189,7 +189,7 @@ public class signup extends javax.swing.JFrame {
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addContainerGap(139, Short.MAX_VALUE)
+                            .addContainerGap(132, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(btnsignup, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -228,7 +228,7 @@ public class signup extends javax.swing.JFrame {
                                 .addComponent(txtconfirmpassword, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtfirstname)
                                 .addComponent(txtusername, javax.swing.GroupLayout.Alignment.LEADING)))))
-                .addContainerGap(124, Short.MAX_VALUE))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
