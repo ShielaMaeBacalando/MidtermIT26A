@@ -14,6 +14,11 @@ public class IT26ADATABASE {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        REGISTER LoginFrame = new REGISTER();
+        LoginFrame.setVisible(true);
+        LoginFrame.pack();
+        LoginFrame.setLocationRelativeTo(null); 
         // TODO code application logic here
     }
     

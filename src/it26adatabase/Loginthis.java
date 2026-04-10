@@ -4,6 +4,7 @@
  */
 package it26adatabase;
 
+
 /**
  *
  * @author Chookie
@@ -152,7 +153,9 @@ public class Loginthis extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
-        // TODO add your handling code here:
+     
+               // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnloginActionPerformed
 
     private void txtloginnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtloginnameActionPerformed

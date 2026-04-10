@@ -3,6 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package it26adatabase;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.showMessageDialog;
 
 /**
  *
@@ -35,10 +42,10 @@ public class REGISTER extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtname = new javax.swing.JTextField();
-        txtemail = new javax.swing.JTextField();
-        txtpassword = new javax.swing.JTextField();
-        btnsignup = new javax.swing.JButton();
+        fname = new javax.swing.JTextField();
+        emailadd = new javax.swing.JTextField();
+        pass = new javax.swing.JTextField();
+        SignUpBtn = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         btnsignup1 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -65,19 +72,19 @@ public class REGISTER extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("PASSWORD :");
 
-        txtname.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 0, 102)));
-        txtname.addActionListener(this::txtnameActionPerformed);
+        fname.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 0, 102)));
+        fname.addActionListener(this::fnameActionPerformed);
 
-        txtemail.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 0, 102)));
-        txtemail.addActionListener(this::txtemailActionPerformed);
+        emailadd.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 0, 102)));
+        emailadd.addActionListener(this::emailaddActionPerformed);
 
-        txtpassword.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 0, 102)));
-        txtpassword.addActionListener(this::txtpasswordActionPerformed);
+        pass.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 0, 102)));
+        pass.addActionListener(this::passActionPerformed);
 
-        btnsignup.setFont(new java.awt.Font("Stencil", 1, 12)); // NOI18N
-        btnsignup.setText("SIGN UP");
-        btnsignup.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 0, 102)));
-        btnsignup.addActionListener(this::btnsignupActionPerformed);
+        SignUpBtn.setFont(new java.awt.Font("Stencil", 1, 12)); // NOI18N
+        SignUpBtn.setText("SIGN UP");
+        SignUpBtn.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 0, 102)));
+        SignUpBtn.addActionListener(this::SignUpBtnActionPerformed);
 
         jLabel6.setFont(new java.awt.Font("Segoe Script", 1, 6)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 0, 102));
@@ -105,7 +112,7 @@ public class REGISTER extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addGap(182, 182, 182)
-                            .addComponent(btnsignup, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SignUpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                             .addComponent(btnsignup1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(21, 21, 21))
@@ -117,9 +124,9 @@ public class REGISTER extends javax.swing.JFrame {
                                 .addComponent(jLabel4))
                             .addGap(40, 40, 40)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtname, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
-                                .addComponent(txtemail)
-                                .addComponent(txtpassword))))
+                                .addComponent(fname, javax.swing.GroupLayout.DEFAULT_SIZE, 206, Short.MAX_VALUE)
+                                .addComponent(emailadd)
+                                .addComponent(pass))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(200, 200, 200)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,23 +147,23 @@ public class REGISTER extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(8, 8, 8)
-                        .addComponent(txtname))
+                        .addComponent(fname))
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(emailadd, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pass, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jLabel6))
                 .addGap(7, 7, 7)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnsignup, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(SignUpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnsignup1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(101, 101, 101))
         );
@@ -175,21 +182,58 @@ public class REGISTER extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnameActionPerformed
+    private void fnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fnameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtnameActionPerformed
+    }//GEN-LAST:event_fnameActionPerformed
 
-    private void txtemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtemailActionPerformed
+    private void emailaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailaddActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtemailActionPerformed
+    }//GEN-LAST:event_emailaddActionPerformed
 
-    private void txtpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpasswordActionPerformed
+    private void passActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtpasswordActionPerformed
+    }//GEN-LAST:event_passActionPerformed
 
-    private void btnsignupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsignupActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnsignupActionPerformed
+    private void SignUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpBtnActionPerformed
+       System.out.print("Sign up button clicked");
+       String fullName, email, Password, query;
+        String SUrl, SUser, SPass;
+        SUrl = "jdbc:mysql://localhost:3306/it29a";
+        SUser = "root";
+        SPass = "";
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(SUrl, SUser, SPass);
+            Statement st = con.createStatement();
+            if("".equals(fname.getText())){
+                JOptionPane.showMessageDialog(new JFrame(), "Full Name is require", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }else if("".equals(emailadd.getText())){
+                JOptionPane.showMessageDialog(new JFrame(), "Email Address is require", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }else if("".equals(pass.getText())){
+                JOptionPane.showMessageDialog(new JFrame(), "Password is require", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }else {
+            fullName = fname.getText(); 
+            email    = emailadd.getText();
+            Password = pass.getText();
+            System.out.println(Password);
+            
+            query = "INSERT INTO user(full_name, email, password)"+
+                    "VALUES('"+fullName+"', '"+email+"' , '"+Password+"')";
+            
+            st.execute(query);
+            fname.setText("");
+            emailadd.setText("");
+            pass.setText("");
+            showMessageDialog(null, "New account has been created successfully!");
+            }
+        }catch(Exception e){
+           System.out.println("Error!" + e.getMessage()); 
+        }
+        
+    }//GEN-LAST:event_SignUpBtnActionPerformed
 
     private void btnsignup1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsignup1ActionPerformed
         // TODO add your handling code here:
@@ -221,8 +265,10 @@ public class REGISTER extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnsignup;
+    private javax.swing.JButton SignUpBtn;
     private javax.swing.JButton btnsignup1;
+    private javax.swing.JTextField emailadd;
+    private javax.swing.JTextField fname;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -232,8 +278,6 @@ public class REGISTER extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField txtemail;
-    private javax.swing.JTextField txtname;
-    private javax.swing.JTextField txtpassword;
+    private javax.swing.JTextField pass;
     // End of variables declaration//GEN-END:variables
 }
