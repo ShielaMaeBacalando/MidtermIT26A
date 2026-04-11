@@ -208,8 +208,9 @@ public class REGISTER extends javax.swing.JFrame {
 
     private void SignUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpBtnActionPerformed
      
-       Loginthis dashboard = new Loginthis(); 
-        
+       Loginthis LoginWindow = new Loginthis();
+        LoginWindow.setVisible(true);
+        this.dispose(); 
       String name = fnamesignup.getText();
       String user = usernamesignup .getText();
       String pass = String.valueOf(passwordsignup.getPassword());
@@ -240,7 +241,7 @@ try {
         JOptionPane.showMessageDialog(this, "Registration Successful!");
         
      
-        new REGISTER().setVisible(true);
+        
         this.dispose();
     }
     

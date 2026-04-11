@@ -203,7 +203,9 @@ public class Loginthis extends javax.swing.JFrame {
     }//GEN-LAST:event_txtloginusernameActionPerformed
 
     private void backbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbtnActionPerformed
-        // TODO add your handling code here:
+    REGISTER LoginWindow = new REGISTER();
+        LoginWindow.setVisible(true);
+        this.dispose();      
     }//GEN-LAST:event_backbtnActionPerformed
 
     /**
