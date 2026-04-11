@@ -59,6 +59,11 @@ public class Loginthis extends javax.swing.JFrame {
         btnlogin.setFont(new java.awt.Font("Stencil", 1, 12)); // NOI18N
         btnlogin.setText("LOGIN");
         btnlogin.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 0, 102)));
+        btnlogin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnloginMouseClicked(evt);
+            }
+        });
         btnlogin.addActionListener(this::btnloginActionPerformed);
 
         txtloginusername.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 0, 102)));
@@ -158,7 +163,11 @@ public class Loginthis extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
-    String user = txtloginusername.getText();
+    home LoginWindow = new home();
+        LoginWindow.setVisible(true);
+        this.dispose(); 
+        
+        String user = txtloginusername.getText();
      String pass = new String(loginpass.getPassword());
      
      if(user.isEmpty()|| pass.isEmpty()){
@@ -181,8 +190,8 @@ public class Loginthis extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Login Successful! Welcome, " + name);
         
         // 4. Transition to Dashboard
-      home dashboard = new home(); 
-    dashboard.setVisible(true);
+      
+    
     } else {
         // FAIL: No match found
         JOptionPane.showMessageDialog(this, "Invalid Username or Password", "Login Failed", JOptionPane.ERROR_MESSAGE);
@@ -207,6 +216,10 @@ public class Loginthis extends javax.swing.JFrame {
         LoginWindow.setVisible(true);
         this.dispose();      
     }//GEN-LAST:event_backbtnActionPerformed
+
+    private void btnloginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnloginMouseClicked
+       // TODO add your handling code here:
+    }//GEN-LAST:event_btnloginMouseClicked
 
     /**
      * @param args the command line arguments

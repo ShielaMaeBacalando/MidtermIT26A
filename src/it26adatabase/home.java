@@ -104,13 +104,13 @@ public class home extends javax.swing.JFrame {
                         .addComponent(jLabel5)))
                 .addContainerGap(113, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(logoutbtn)
                 .addGap(24, 24, 24))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
@@ -147,7 +147,14 @@ public class home extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void logoutbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutbtnActionPerformed
-        // TODO add your handling code here:
+       int confirm = javax.swing.JOptionPane.showConfirmDialog(this, 
+        "Are you sure you want to logout?", "Logout Confirmation", 
+        javax.swing.JOptionPane.YES_NO_OPTION);
+
+if (confirm == javax.swing.JOptionPane.YES_OPTION) {
+    new REGISTER().setVisible(true);
+    this.dispose();
+}
     }//GEN-LAST:event_logoutbtnActionPerformed
 
     /**
