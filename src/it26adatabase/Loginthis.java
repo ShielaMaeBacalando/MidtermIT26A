@@ -38,7 +38,7 @@ public class Loginthis extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnlogin = new javax.swing.JButton();
-        txtloginname = new javax.swing.JTextField();
+        txtloginusername = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -61,14 +61,14 @@ public class Loginthis extends javax.swing.JFrame {
         btnlogin.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 0, 102)));
         btnlogin.addActionListener(this::btnloginActionPerformed);
 
-        txtloginname.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 0, 102)));
-        txtloginname.addActionListener(this::txtloginnameActionPerformed);
+        txtloginusername.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 0, 102)));
+        txtloginusername.addActionListener(this::txtloginusernameActionPerformed);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("PASSWORD : ");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel4.setText("NAME :");
+        jLabel4.setText("USERNAME :");
 
         jLabel5.setFont(new java.awt.Font("Segoe Script", 1, 8)); // NOI18N
         jLabel5.setText("BILIS!! BAGAL MO!!");
@@ -79,7 +79,6 @@ public class Loginthis extends javax.swing.JFrame {
         backbtn.setBorder(null);
         backbtn.addActionListener(this::backbtnActionPerformed);
 
-        loginpass.setText("jPasswordField1");
         loginpass.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 0, 102)));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -102,7 +101,7 @@ public class Loginthis extends javax.swing.JFrame {
                                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtloginname, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                                    .addComponent(txtloginusername, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
                                     .addComponent(loginpass))
                                 .addGap(145, 145, 145))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -127,7 +126,7 @@ public class Loginthis extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(59, 59, 59)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtloginname, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtloginusername, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,7 +158,7 @@ public class Loginthis extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
-    String user = txtloginname.getText();
+    String user = txtloginusername.getText();
      String pass = new String(loginpass.getPassword());
      
      if(user.isEmpty()|| pass.isEmpty()){
@@ -167,7 +166,7 @@ public class Loginthis extends javax.swing.JFrame {
          return;
      }
      try{
-         Connection conn = ConnectionDB.connectDB();
+         Connection conn = databaseconnection.connectDB();
          
          String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
          PreparedStatement pst = conn.prepareStatement(sql);
@@ -199,9 +198,9 @@ public class Loginthis extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnloginActionPerformed
 
-    private void txtloginnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtloginnameActionPerformed
+    private void txtloginusernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtloginusernameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtloginnameActionPerformed
+    }//GEN-LAST:event_txtloginusernameActionPerformed
 
     private void backbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbtnActionPerformed
         // TODO add your handling code here:
@@ -242,6 +241,6 @@ public class Loginthis extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField loginpass;
-    private javax.swing.JTextField txtloginname;
+    private javax.swing.JTextField txtloginusername;
     // End of variables declaration//GEN-END:variables
 }

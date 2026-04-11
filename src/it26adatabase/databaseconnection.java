@@ -3,20 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package it26adatabase;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
 /**
  *
  * @author Chookie
  */
-public class ConnectionDB {
-   
-
-    public static Connection getConnection() {
+public class databaseconnection {
+     public static Connection getConnection() {
         Connection conn = null;
         try {
-        String URL = "jdbc:mysql://localhost:3306/it29a";
+        String URL = "jdbc:mysql://localhost:3306/useregistration";
         String USER = "root";
         String PASSWORD = "";    
        
@@ -33,8 +33,8 @@ public class ConnectionDB {
     }
 
     static Connection connectDB() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    return getConnection(); // This calls the working logic above
 }
+}    
     
 
