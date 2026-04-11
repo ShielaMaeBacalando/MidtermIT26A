@@ -9,6 +9,11 @@ package it26adatabase;
  *
  * @author Chookie
  */
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+
 public class Loginthis extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Loginthis.class.getName());
@@ -34,11 +39,11 @@ public class Loginthis extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnlogin = new javax.swing.JButton();
         txtloginname = new javax.swing.JTextField();
-        txtloginpassword = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         backbtn = new javax.swing.JButton();
+        loginpass = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,9 +64,6 @@ public class Loginthis extends javax.swing.JFrame {
         txtloginname.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 0, 102)));
         txtloginname.addActionListener(this::txtloginnameActionPerformed);
 
-        txtloginpassword.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 0, 102)));
-        txtloginpassword.addActionListener(this::txtloginpasswordActionPerformed);
-
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("PASSWORD : ");
 
@@ -77,6 +79,9 @@ public class Loginthis extends javax.swing.JFrame {
         backbtn.setBorder(null);
         backbtn.addActionListener(this::backbtnActionPerformed);
 
+        loginpass.setText("jPasswordField1");
+        loginpass.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(51, 0, 102)));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -84,7 +89,7 @@ public class Loginthis extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(222, 222, 222)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(219, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,9 +101,9 @@ public class Loginthis extends javax.swing.JFrame {
                                     .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtloginname, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtloginpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtloginname, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+                                    .addComponent(loginpass))
                                 .addGap(145, 145, 145))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -126,10 +131,11 @@ public class Loginthis extends javax.swing.JFrame {
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(loginpass, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtloginpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
+                        .addGap(57, 57, 57)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -153,18 +159,49 @@ public class Loginthis extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
+    String user = txtloginname.getText();
+     String pass = new String(loginpass.getPassword());
      
-               // TODO add your handling code here:
+     if(user.isEmpty()|| pass.isEmpty()){
+         JOptionPane.showMessageDialog(this, "Username and Password cannot be empty");
+         return;
+     }
+     try{
+         Connection conn = ConnectionDB.connectDB();
+         
+         String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+         PreparedStatement pst = conn.prepareStatement(sql);
+         pst.setString(1, user);
+         pst.setString(2, pass);
+         
+         ResultSet rs = pst.executeQuery();
+         
+        if (rs.next()) {
+        // SUCCESS: Found a matching user!
+        String name = rs.getString("fullName"); // Grabbing the name from the DB
+        JOptionPane.showMessageDialog(this, "Login Successful! Welcome, " + name);
+        
+        // 4. Transition to Dashboard
+      home dashboard = new home(); 
+    dashboard.setVisible(true);
+    } else {
+        // FAIL: No match found
+        JOptionPane.showMessageDialog(this, "Invalid Username or Password", "Login Failed", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    conn.close();
+    
+} catch (Exception e) {
+    JOptionPane.showMessageDialog(this, "Database Error: " + e.getMessage());
+}
+   
+              
         
     }//GEN-LAST:event_btnloginActionPerformed
 
     private void txtloginnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtloginnameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtloginnameActionPerformed
-
-    private void txtloginpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtloginpasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtloginpasswordActionPerformed
 
     private void backbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbtnActionPerformed
         // TODO add your handling code here:
@@ -204,7 +241,7 @@ public class Loginthis extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField loginpass;
     private javax.swing.JTextField txtloginname;
-    private javax.swing.JTextField txtloginpassword;
     // End of variables declaration//GEN-END:variables
 }
