@@ -163,9 +163,7 @@ public class Loginstatus extends javax.swing.JFrame {
     }//GEN-LAST:event_btnloginMouseClicked
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
-        dashboard LoginWindow = new dashboard();
-        LoginWindow.setVisible(true);
-        this.dispose();
+        
 
         String user = txtloginusername.getText();
         String pass = new String(loginpass.getPassword());

@@ -208,9 +208,7 @@ public class RegisterForm extends javax.swing.JFrame {
 
     private void SignUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpBtnActionPerformed
 
-        Loginstatus LoginWindow = new Loginstatus();
-        LoginWindow.setVisible(true);
-        this.dispose();
+        
         String name = fnamesignup.getText();
         String user = usernamesignup .getText();
         String pass = String.valueOf(passwordsignup.getPassword());
