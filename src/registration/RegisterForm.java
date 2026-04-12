@@ -207,7 +207,7 @@ public class RegisterForm extends javax.swing.JFrame {
 
     private void SignUpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignUpBtnActionPerformed
 
-        Loginthis LoginWindow = new Loginthis();
+        Loginstatus LoginWindow = new Loginstatus();
         LoginWindow.setVisible(true);
         this.dispose();
         String name = fnamesignup.getText();
@@ -222,7 +222,7 @@ public class RegisterForm extends javax.swing.JFrame {
 
         try {
 
-            java.sql.Connection conn = databaseconnection.connectDB();
+            java.sql.Connection conn = Databaseconnection.connectDB();
 
             String sql = "INSERT INTO users (fullName, username, password, email) VALUES (?, ?, ?, ?)";
             java.sql.PreparedStatement pst = conn.prepareStatement(sql);

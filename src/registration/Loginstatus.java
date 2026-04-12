@@ -16,9 +16,7 @@ public class Loginstatus extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Loginstatus.class.getName());
 
-    /**
-     * Creates new form Loginstatus
-     */
+    
     public Loginstatus() {
         initComponents();
     }
@@ -177,7 +175,7 @@ public class Loginstatus extends javax.swing.JFrame {
             return;
         }
         try{
-            Connection conn = Databaseconnection.connectDB();
+            Connection conn = DatabaseConnection.connectDB();
 
             String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
             PreparedStatement pst = conn.prepareStatement(sql);
@@ -211,7 +209,7 @@ public class Loginstatus extends javax.swing.JFrame {
     }//GEN-LAST:event_txtloginusernameActionPerformed
 
     private void backbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbtnActionPerformed
-        Registration LoginWindow = new Registration();
+        RegisterForm LoginWindow = new RegisterForm();
         LoginWindow.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backbtnActionPerformed
