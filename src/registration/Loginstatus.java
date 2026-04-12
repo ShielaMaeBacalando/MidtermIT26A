@@ -161,7 +161,7 @@ public class Loginstatus extends javax.swing.JFrame {
     }//GEN-LAST:event_btnloginMouseClicked
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
-        home LoginWindow = new home();
+        dashboard LoginWindow = new dashboard();
         LoginWindow.setVisible(true);
         this.dispose();
 
@@ -173,7 +173,7 @@ public class Loginstatus extends javax.swing.JFrame {
             return;
         }
         try{
-            Connection conn = databaseconnection.connectDB();
+            Connection conn = Databaseconnection.connectDB();
 
             String sql = "SELECT * FROM users WHERE username = ? AND password = ?";
             PreparedStatement pst = conn.prepareStatement(sql);
@@ -207,7 +207,7 @@ public class Loginstatus extends javax.swing.JFrame {
     }//GEN-LAST:event_txtloginusernameActionPerformed
 
     private void backbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backbtnActionPerformed
-        REGISTER LoginWindow = new REGISTER();
+        Registration LoginWindow = new Registration();
         LoginWindow.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backbtnActionPerformed
