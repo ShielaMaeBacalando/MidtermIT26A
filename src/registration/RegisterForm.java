@@ -8,6 +8,7 @@ package registration;
  *
  * @author Chookie
  */
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -222,7 +223,7 @@ public class RegisterForm extends javax.swing.JFrame {
 
         try {
 
-            java.sql.Connection conn = Databaseconnection.connectDB();
+            java.sql.Connection conn = DatabaseConnection.connectDB();
 
             String sql = "INSERT INTO users (fullName, username, password, email) VALUES (?, ?, ?, ?)";
             java.sql.PreparedStatement pst = conn.prepareStatement(sql);
@@ -248,7 +249,7 @@ public class RegisterForm extends javax.swing.JFrame {
     }//GEN-LAST:event_SignUpBtnActionPerformed
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
-        Loginthis LoginWindow = new Loginthis();
+        Loginstatus LoginWindow = new Loginstatus();
         LoginWindow.setVisible(true);
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btnloginActionPerformed
