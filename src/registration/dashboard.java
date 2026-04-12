@@ -158,7 +158,7 @@ public class dashboard extends javax.swing.JFrame {
             javax.swing.JOptionPane.YES_NO_OPTION);
 
         if (confirm == javax.swing.JOptionPane.YES_OPTION) {
-            new REGISTER().setVisible(true);
+            new Registerform().setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_logoutbtnActionPerformed
@@ -174,7 +174,7 @@ public class dashboard extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Home().setVisible(true);
+                new Registerform().setVisible(true);
             }
         });
     }//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

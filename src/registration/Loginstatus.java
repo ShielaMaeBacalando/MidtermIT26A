@@ -8,6 +8,10 @@ package registration;
  *
  * @author Chookie
  */
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 public class Loginstatus extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Loginstatus.class.getName());

@@ -6,13 +6,13 @@ import java.sql.SQLException;
 
 public class DatabaseConnection {
     
-    private static final String URL = "jdbc:mysql://localhost:3306/useregistration";
-    private static final String USER = "root";
-    private static final String PASSWORD = "";
-
     public static Connection getConnection() {
         Connection conn = null;
         try {
+        String URL = "jdbc:mysql://localhost:3306/useregistration";
+        String USER = "root";
+        String PASSWORD = "";    
+       
             // Register the driver (optional in newer JDBC versions but good for troubleshooting)
             Class.forName("com.mysql.cj.jdbc.Driver"); 
             
@@ -24,4 +24,9 @@ public class DatabaseConnection {
         }
         return conn;
     }
+
+    static Connection connectDB() {
+    return getConnection(); // This calls the working logic above
 }
+}    
+    
