@@ -235,7 +235,9 @@ public class RegisterForm extends javax.swing.JFrame {
             if (updatedRows > 0) {
                 JOptionPane.showMessageDialog(this, "Registration Successful!");
 
-                this.dispose();
+                Loginstatus LoginWindow = new Loginstatus();
+        LoginWindow.setVisible(true);
+        this.dispose(); 
             }
 
             conn.close();

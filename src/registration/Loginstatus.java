@@ -164,6 +164,7 @@ public class Loginstatus extends javax.swing.JFrame {
 
     private void btnloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnloginActionPerformed
         
+         
 
         String user = txtloginusername.getText();
         String pass = new String(loginpass.getPassword());
@@ -192,6 +193,9 @@ public class Loginstatus extends javax.swing.JFrame {
             } else {
                 // FAIL: No match found
                 JOptionPane.showMessageDialog(this, "Invalid Username or Password", "Login Failed", JOptionPane.ERROR_MESSAGE);
+               dashboard LoginWindow = new dashboard();
+        LoginWindow.setVisible(true);
+        this.dispose();  
             }
 
             conn.close();
