@@ -187,15 +187,18 @@ public class Loginstatus extends javax.swing.JFrame {
                 // SUCCESS: Found a matching user!
                 String name = rs.getString("fullName"); // Grabbing the name from the DB
                 JOptionPane.showMessageDialog(this, "Login Successful! Welcome, " + name);
+                
+                dashboard LoginWindow = new dashboard();
+                LoginWindow.setVisible(true);
+                this.dispose();
 
                 // 4. Transition to Dashboard
 
             } else {
                 // FAIL: No match found
                 JOptionPane.showMessageDialog(this, "Invalid Username or Password", "Login Failed", JOptionPane.ERROR_MESSAGE);
-               dashboard LoginWindow = new dashboard();
-        LoginWindow.setVisible(true);
-        this.dispose();  
+               
+                 
             }
 
             conn.close();
